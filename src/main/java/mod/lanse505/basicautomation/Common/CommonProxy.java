@@ -1,4 +1,4 @@
-package mod.lanse505.basicautomation.proxy;
+package mod.lanse505.basicautomation.Common;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;

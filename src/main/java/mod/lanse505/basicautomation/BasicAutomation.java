@@ -1,7 +1,7 @@
 package mod.lanse505.basicautomation;
 
-import mod.lanse505.basicautomation.proxy.CommonProxy;
-import mod.lanse505.basicautomation.utils.Config;
+import mod.lanse505.basicautomation.Common.CommonProxy;
+import mod.lanse505.basicautomation.Common.utils.Config;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -20,7 +20,7 @@ public class BasicAutomation
     public static final String MCVER = "1.12.0";
     public static final String DEP = "";
 
-    @SidedProxy(clientSide = "mod.lanse505.basicautomation.proxy.ClientProxy", serverSide = "mod.lanse505.basicautomation.proxy.ServerProxy")
+    @SidedProxy(clientSide = "mod.lanse505.basicautomation.Client.ClientProxy", serverSide = "mod.lanse505.basicautomation.Server.ServerProxy")
     public static CommonProxy proxy;
 
     @Mod.Instance

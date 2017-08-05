@@ -1,4 +1,4 @@
-package mod.lanse505.basicautomation.utils;
+package mod.lanse505.basicautomation.Common.utils;
 
 import mod.lanse505.basicautomation.BasicAutomation;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -6,9 +6,9 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 public class Config {
     @net.minecraftforge.common.config.Config(modid = BasicAutomation.MODID)
     public static class Configs{
-        public static General general;
-        public static Blocks blocks;
-        public static Utils utils;
+        public static General General;
+        public static Blocks Blocks;
+        public static Utils Utils;
 
         public static class General {
             @net.minecraftforge.common.config.Config.Comment("General Configs")
