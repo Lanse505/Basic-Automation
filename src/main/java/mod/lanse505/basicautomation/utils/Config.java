@@ -1,55 +1,34 @@
 package mod.lanse505.basicautomation.utils;
 
-import mod.lanse505.basicautomation.proxy.CommonProxy;
-import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.fml.common.Mod;
+import mod.lanse505.basicautomation.BasicAutomation;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import org.apache.logging.log4j.Level;
 
-import java.io.File;
-
-import static mod.lanse505.basicautomation.BasicAutomation.logger;
-
+@net.minecraftforge.common.config.Config(modid = BasicAutomation.MODID)
 public class Config {
-    private static final String CATEGORY_GENERAL = "General";
-    private static final String CATEGORY_UTILS = "Utilities";
-    private static final String CATEGORY_BLOCKS = "Blocks";
 
-    public static int rangeMG;
-    public static boolean mobGrinder;
-    public static int rangeAS;
-    public static boolean autoShear;
-
-
-    public static void readConfig(){
-        Configuration cfg = CommonProxy.config;
-        try{
-            cfg.load();
-            initGeneralConfig(cfg);
-            initBlockConfig(cfg);
-            initUtilConfig(cfg);
-        } catch (Exception e1){
-            logger.log(Level.ERROR, "Problem Loading Configuration File");
-        } finally {
-            if (cfg.hasChanged()){
-                cfg.save();
-            }
-        }
+    public static class General {
+        @net.minecraftforge.common.config.Config.Comment("General Configs")
+        public static boolean allBlocks = true;
     }
 
-    public static void initGeneralConfig(Configuration cfg) {
-        cfg.addCustomCategoryComment(CATEGORY_GENERAL, "General Configuration");
+    public static class Blocks {
+        @net.minecraftforge.common.config.Config.Comment("Enable the Mob Grinder?")
+        public static boolean mobGrinder = true;
+
+        @net.minecraftforge.common.config.Config.Comment("Enable the Auto-Shear?")
+        public static boolean autoShear = true;
     }
 
-    private static void initBlockConfig(Configuration cfg){
-        cfg.addCustomCategoryComment(CATEGORY_BLOCKS, "Block Configurations");
-        mobGrinder = cfg.getBoolean("mobGrinder", CATEGORY_BLOCKS, true, "Enable Mob Grinder");
-        autoShear = cfg.getBoolean("autoShear", CATEGORY_BLOCKS, true, "Enable Auto-Shear");
+    public static class Utils{
+        @net.minecraftforge.common.config.Config.Comment("Determines the range of the Mob Grinder")
+        @net.minecraftforge.common.config.Config.RangeInt(min = 1, max = 4)
+        public static int rangeMG = 1;
+
+        @net.minecraftforge.common.config.Config.Comment("Determines the range of the Auto-Shear")
+        @net.minecraftforge.common.config.Config.RangeInt(min = 1, max = 4)
+        public static int rangeAS = 1;
     }
 
-    private static void initUtilConfig(Configuration cfg){
-        cfg.addCustomCategoryComment(CATEGORY_UTILS, "Utility Configurations");
-        rangeMG = cfg.getInt("rangeMG", CATEGORY_UTILS, 1, 1, 4, "How many blocks the Mob Grinder should check in XZ");
-        rangeAS = cfg.getInt("rangeAS", CATEGORY_UTILS, 1, 1, 4, "How many blocks the Auto-Shear should check in XZ");
+    public static void preInit(FMLPreInitializationEvent event) {
     }
 }

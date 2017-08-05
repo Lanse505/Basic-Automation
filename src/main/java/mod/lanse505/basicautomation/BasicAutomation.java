@@ -1,6 +1,7 @@
 package mod.lanse505.basicautomation;
 
 import mod.lanse505.basicautomation.proxy.CommonProxy;
+import mod.lanse505.basicautomation.utils.Config;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -30,6 +31,7 @@ public class BasicAutomation
     public void preInit(FMLPreInitializationEvent event){
         logger = event.getModLog();
         proxy.preInit(event);
+        Config.preInit(event);
     }
 
     @EventHandler
