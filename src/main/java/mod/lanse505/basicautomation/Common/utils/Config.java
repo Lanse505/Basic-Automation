@@ -1,4 +1,4 @@
-package mod.lanse505.basicautomation.Common.utils;
+package mod.lanse505.basicautomation.common.utils;
 
 import mod.lanse505.basicautomation.BasicAutomation;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;

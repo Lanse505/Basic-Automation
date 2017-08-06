@@ -1,6 +1,6 @@
-package mod.lanse505.basicautomation.Client;
+package mod.lanse505.basicautomation.client;
 
-import mod.lanse505.basicautomation.Common.CommonProxy;
+import mod.lanse505.basicautomation.common.CommonProxy;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
