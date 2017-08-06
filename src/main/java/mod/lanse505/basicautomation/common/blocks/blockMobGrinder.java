@@ -36,11 +36,5 @@ public class blockMobGrinder extends Block implements ITileEntityProvider {
         return new tileMobGrinder(){
         };
     }
-
-    private blockMobGrinder getTE(World world, BlockPos pos){
-        return (tileMobGrinder) world.getTileEntity(pos);
-    }
-
-
 }
 

@@ -36,10 +36,4 @@ public class blockAutoMilker extends Block implements ITileEntityProvider {
         return new tileAutoMilker(){
         };
     }
-
-    private blockMobGrinder getTE(World world, BlockPos pos){
-        return (tileAutoMilker) world.getTileEntity(pos);
-    }
-
-
 }

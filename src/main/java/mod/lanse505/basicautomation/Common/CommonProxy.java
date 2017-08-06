@@ -45,8 +45,8 @@ public class CommonProxy {
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event){
-    event.getRegistry().register(new ItemBlock(basicautomation.autoshear).setRegistryName(ModBlocks.autoshear.getRegistryName()));
-    event.getRegistry().register(new ItemBlock(basicautomation.automilker).setRegistryName(ModBlocks.automilker.getRegistryName()));
-    event.getRegistry().register(new ItemBlock(basicautomation.mobgrinder).setRegistryName(ModBlocks.mobgrinder.getRegistryName()));
+    event.getRegistry().register(new ItemBlock(ModBlocks.autoshear).setRegistryName(ModBlocks.autoshear.getRegistryName()));
+    event.getRegistry().register(new ItemBlock(ModBlocks.automilker).setRegistryName(ModBlocks.automilker.getRegistryName()));
+    event.getRegistry().register(new ItemBlock(ModBlocks.mobgrinder).setRegistryName(ModBlocks.mobgrinder.getRegistryName()));
     }
 }

@@ -36,10 +36,4 @@ public class blockAutoShear extends Block implements ITileEntityProvider {
         return new tileAutoShear(){
         };
     }
-
-    private blockAutoShear getTE(World world, BlockPos pos){
-        return (tileAutoShear) world.getTileEntity(pos);
-    }
-
-
 }

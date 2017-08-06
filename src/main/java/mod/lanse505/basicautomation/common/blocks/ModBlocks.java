@@ -3,12 +3,12 @@ package mod.lanse505.basicautomation.common.blocks;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ModBlocks {
-    @GameRegistry.ObjectHolder(basicautomation:automilker)
+    @GameRegistry.ObjectHolder(blockAutoMilker)
     public static blockAutoMilker automilker;
 
-    @GameRegistry.ObjectHolder(basicautomation:autoshear)
+    @GameRegistry.ObjectHolder(blockAutoShear)
     public static blockAutoShear autoshear;
 
-    @GameRegistry.ObjectHolder(basicautomation:mobgrinder)
+    @GameRegistry.ObjectHolder(blockMobGrinder)
     public static blockMobGrinder mobgrinder;
 }
