@@ -1,6 +1,7 @@
 package mod.lanse505.basicautomation.client;
 
 import mod.lanse505.basicautomation.common.CommonProxy;
+import mod.lanse505.basicautomation.common.blocks.ModBlocks;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -16,5 +17,6 @@ public class ClientProxy extends CommonProxy {
 
     @SubscribeEvent
     public static void registerModels(ModelRegistryEvent event) {
+        ModBlocks.initModels();
     }
 }

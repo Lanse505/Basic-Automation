@@ -3,12 +3,12 @@ package mod.lanse505.basicautomation.common;
 import mod.lanse505.basicautomation.BasicAutomation;
 import mod.lanse505.basicautomation.common.blocks.ModBlocks;
 
-import mod.lanse505.basicautomation.common.blocks.blockAutoMilker;
-import mod.lanse505.basicautomation.common.blocks.blockAutoShear;
-import mod.lanse505.basicautomation.common.blocks.blockMobGrinder;
-import mod.lanse505.basicautomation.common.tiles.tileAutoMilker;
-import mod.lanse505.basicautomation.common.tiles.tileAutoShear;
-import mod.lanse505.basicautomation.common.tiles.tileMobGrinder;
+import mod.lanse505.basicautomation.common.blocks.BlockAutoMilker;
+import mod.lanse505.basicautomation.common.blocks.BlockAutoShear;
+import mod.lanse505.basicautomation.common.blocks.BlockMobGrinder;
+import mod.lanse505.basicautomation.common.tiles.TileAutoMilker;
+import mod.lanse505.basicautomation.common.tiles.TileAutoShear;
+import mod.lanse505.basicautomation.common.tiles.TileMobGrinder;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -34,13 +34,13 @@ public class CommonProxy {
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event){
-    event.getRegistry().register(new blockAutoMilker());
-    event.getRegistry().register(new blockAutoShear());
-    event.getRegistry().register(new blockMobGrinder());
+    event.getRegistry().register(new BlockAutoMilker());
+    event.getRegistry().register(new BlockAutoShear());
+    event.getRegistry().register(new BlockMobGrinder());
 
-    GameRegistry.registerTileEntity(tileAutoMilker.class, BasicAutomation.MODID + "_automilker");
-    GameRegistry.registerTileEntity(tileAutoShear.class, BasicAutomation.MODID + "_autoshear");
-    GameRegistry.registerTileEntity(tileMobGrinder.class, BasicAutomation.MODID + "_mobgrinder");
+    GameRegistry.registerTileEntity(TileAutoMilker.class, BasicAutomation.MODID + "_automilker");
+    GameRegistry.registerTileEntity(TileAutoShear.class, BasicAutomation.MODID + "_autoshear");
+    GameRegistry.registerTileEntity(TileMobGrinder.class, BasicAutomation.MODID + "_mobgrinder");
     }
 
     @SubscribeEvent
