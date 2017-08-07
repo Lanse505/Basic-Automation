@@ -6,6 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemSword;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ITickable;
@@ -13,6 +14,8 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.util.FakePlayerFactory;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 import java.util.UUID;
@@ -22,13 +25,14 @@ public class TileMobGrinder extends TileEntity implements ITickable {
     private static final int[] SLOTS = new int[] {0};
 
     @SuppressWarnings("unchecked")
-    private List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + confRange, pos.getY() + 2D, pos.getZ() + confRange));
+    private List<EntityLivingBase> list;
 
-
+    @SuppressWarnings("unchecked")
     public void update() {
-        targetForBlock();
-        list = world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + confRange, pos.getY() + 2D, pos.getZ() + confRange));
-
+        if (!world.isRemote) {
+            list = world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos.getX() - confRange, pos.getY(), pos.getZ() - confRange, pos.getX() + confRange, pos.getY() + 2 + confRange, pos.getZ() + confRange));
+            targetForBlock();
+        }
     }
 
     protected Entity targetForBlock(){
