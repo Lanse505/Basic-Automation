@@ -38,12 +38,13 @@ public class TileMobGrinder extends TileEntity implements ITickable {
                 if (mob instanceof EntityLivingBase) {
                     EntityPlayerMP mobGrinder = FakePlayerFactory.get((WorldServer) world, new GameProfile(UUID.nameUUIDFromBytes(new TextComponentTranslation("fakeplayer.basicautomation.mob.grinder").getFormattedText().getBytes()), new TextComponentTranslation("fakeplayer.basicautomation.mob_grinder").getFormattedText()));
                     mobGrinder.setPosition(this.pos.getX(), -2D, this.pos.getZ());
-                    ItemStack weapon = new ItemStack(, 1, 0);
-                    mobGrinder.setHeldItem(EnumHand.MAIN_HAND, weapon);
+                    //ItemStack weapon = new ItemStack(, 1, 0);
+                    //mobGrinder.setHeldItem(EnumHand.MAIN_HAND, weapon);
                     mobGrinder.attackTargetEntityWithCurrentItem(mob);
                     mobGrinder.resetCooldown();
                 }
             }
         }
+        return null;
     }
 }
