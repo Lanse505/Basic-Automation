@@ -16,11 +16,11 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockAutoShear extends Block implements ITileEntityProvider {
+public class blockAutoShear extends Block implements ITileEntityProvider {
 
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 
-    public BlockAutoShear() {
+    public blockAutoShear() {
         super(Material.IRON);
         setUnlocalizedName(BasicAutomation.MODID + ".autoshear");
         setRegistryName("autoshear");
