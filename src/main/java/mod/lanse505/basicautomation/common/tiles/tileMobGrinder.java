@@ -27,6 +27,8 @@ public class TileMobGrinder extends TileEntity implements ITickable {
 
     public void update() {
         targetForBlock();
+        list = world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + confRange, pos.getY() + 2D, pos.getZ() + confRange));
+
     }
 
     protected Entity targetForBlock(){
