@@ -1,7 +1,7 @@
 package mod.lanse505.basicautomation.common.blocks;
 
 import mod.lanse505.basicautomation.BasicAutomation;
-import mod.lanse505.basicautomation.common.tiles.TileAutoShear;
+import mod.lanse505.basicautomation.common.tiles.tileAutoShear;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -34,7 +34,7 @@ public class blockAutoShear extends Block implements ITileEntityProvider {
 
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta){
-        return new TileAutoShear(){
+        return new tileAutoShear(){
         };
     }
 }

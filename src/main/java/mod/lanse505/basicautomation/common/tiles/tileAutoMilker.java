@@ -2,5 +2,5 @@ package mod.lanse505.basicautomation.common.tiles;
 
 import net.minecraft.tileentity.TileEntity;
 
-public class TileAutoMilker extends TileEntity {
+public class tileAutoMilker extends TileEntity {
 }

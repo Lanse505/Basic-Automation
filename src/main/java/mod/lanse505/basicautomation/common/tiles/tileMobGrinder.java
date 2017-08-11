@@ -17,16 +17,15 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.FakePlayerFactory;
-import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
 import java.util.List;
 import java.util.UUID;
 
-public class TileMobGrinder extends TileEntity implements ITickable {
+public class tileMobGrinder extends TileEntity implements ITickable {
     public static int config = Config.Configs.Utils.speedMG;
+    public static int currentCount = config;
     public static final int SIZE = 1;
     private static final int SLOT = 0;
 
@@ -35,7 +34,7 @@ public class TileMobGrinder extends TileEntity implements ITickable {
 
     private ItemStackHandler itemStackHandler = new ItemStackHandler(SIZE){
         protected void onContentChanged(int SLOT){
-            TileMobGrinder.this.markDirty();
+            tileMobGrinder.this.markDirty();
         }
     };
 
@@ -77,30 +76,24 @@ public class TileMobGrinder extends TileEntity implements ITickable {
     @SuppressWarnings("unchecked")
     public void update() {
         if (!world.isRemote) {
-            list = world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos.getX() - Config.Configs.Utils.rangeMG, pos.getY(), pos.getZ() - Config.Configs.Utils.rangeMG, pos.getX() + 1 + Config.Configs.Utils.rangeMG, pos.getY() + 3 + Config.Configs.Utils.rangeMG, pos.getZ() + 1 + Config.Configs.Utils.rangeMG));
-            targetForBlock();
-        }
-    }
-
-    protected Entity targetForBlock(){
-        for (int i = 0; i < list.size(); i++) {
-            Entity mob = list.get(i);
-            if (mob != null) {
-                if (mob instanceof EntityLivingBase) {
-                    EntityPlayerMP mobGrinder = FakePlayerFactory.get((WorldServer) world, new GameProfile(UUID.nameUUIDFromBytes(new TextComponentTranslation("fakeplayer.basicautomation.mob.grinder").getFormattedText().getBytes()), new TextComponentTranslation("fakeplayer.basicautomation.mob_grinder").getFormattedText()));
-                    mobGrinder.setPosition(this.pos.getX(), -2D, this.pos.getZ());
-                    ItemStack weapon = this.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0);
-                    mobGrinder.setHeldItem(EnumHand.MAIN_HAND, weapon);
-                    if (int j = 0; j < config j++;){
-                        if (j == config) {
-                            mobGrinder.attackTargetEntityWithCurrentItem(mob);
-                            j = 0;
+            currentCount--;
+            if (currentCount == 0) {
+                ItemStack weapon = this.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0);
+                EntityPlayerMP mobGrinder = FakePlayerFactory.get((WorldServer) world, new GameProfile(UUID.nameUUIDFromBytes(new TextComponentTranslation("fakeplayer.basicautomation.mob.grinder").getFormattedText().getBytes()), new TextComponentTranslation("fakeplayer.basicautomation.mob_grinder").getFormattedText()));
+                mobGrinder.setPosition(this.pos.getX(), -2D, this.pos.getZ());
+                mobGrinder.setHeldItem(EnumHand.MAIN_HAND, weapon);
+                List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos.getX() - Config.Configs.Utils.rangeMG, pos.getY(), pos.getZ() - Config.Configs.Utils.rangeMG, pos.getX() + 1 + Config.Configs.Utils.rangeMG, pos.getY() + 3 + Config.Configs.Utils.rangeMG, pos.getZ() + 1 + Config.Configs.Utils.rangeMG));
+                for (int i = 0; i < list.size(); i++) {
+                    Entity mob = list.get(i);
+                    if (mob != null) {
+                        if (!mob.isDead) {
+                                mobGrinder.attackTargetEntityWithCurrentItem(mob);
+                                mobGrinder.resetCooldown();
+                            }
                         }
                     }
-                    mobGrinder.resetCooldown();
                 }
+                currentCount = config;
             }
         }
-        return null;
-    }
 }

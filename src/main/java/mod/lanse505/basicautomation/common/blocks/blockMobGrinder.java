@@ -1,7 +1,7 @@
 package mod.lanse505.basicautomation.common.blocks;
 
 import mod.lanse505.basicautomation.BasicAutomation;
-import mod.lanse505.basicautomation.common.tiles.TileMobGrinder;
+import mod.lanse505.basicautomation.common.tiles.tileMobGrinder;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
@@ -12,7 +12,6 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -43,7 +42,7 @@ public class blockMobGrinder extends Block implements ITileEntityProvider {
 
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta){
-        return new TileMobGrinder();
+        return new tileMobGrinder();
     }
 
     @Override
@@ -53,7 +52,7 @@ public class blockMobGrinder extends Block implements ITileEntityProvider {
         }
 
         TileEntity te = world.getTileEntity(pos);
-        if (!(te instanceof TileMobGrinder)) {
+        if (!(te instanceof tileMobGrinder)) {
             return false;
         }
         player.openGui(BasicAutomation.instance, GUI_ID, world, pos.getX(), pos.getY(), pos.getZ());
