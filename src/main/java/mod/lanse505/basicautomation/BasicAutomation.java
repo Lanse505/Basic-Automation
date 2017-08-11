@@ -36,6 +36,7 @@ public class BasicAutomation
 
     @EventHandler
     public void init(FMLInitializationEvent event){
+        proxy.init(event);
     }
 
     @EventHandler
