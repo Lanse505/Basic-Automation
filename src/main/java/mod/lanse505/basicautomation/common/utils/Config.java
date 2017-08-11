@@ -30,6 +30,10 @@ public class Config {
             @net.minecraftforge.common.config.Config.RangeInt(min = 1, max = 4)
             public static int rangeMG = 1;
 
+            @net.minecraftforge.common.config.Config.Comment("Determines how often the Grinder will /Attack/ mobs")
+            @net.minecraftforge.common.config.Config.RangeInt(min = 1, max = 20)
+            public static int speedMG = 1;
+
             @net.minecraftforge.common.config.Config.Comment("Determines the range of the Auto-Shear: " + "[1 = 3x3, 2 = 5x5, 3 = 7x7, 4 = 9x9]")
             @net.minecraftforge.common.config.Config.RangeInt(min = 1, max = 4)
             public static int rangeAS = 1;
