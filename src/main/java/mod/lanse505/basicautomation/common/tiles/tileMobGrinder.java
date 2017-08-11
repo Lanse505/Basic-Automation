@@ -6,9 +6,11 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -23,13 +25,13 @@ import java.util.UUID;
 
 public class TileMobGrinder extends TileEntity implements ITickable {
     public static final int SIZE = 1;
-    private static final int[] SLOTS = new int[] {0};
+    private static final int SLOT = 0;
 
     @SuppressWarnings("unchecked")
     private List<EntityLivingBase> list;
 
     private ItemStackHandler itemStackHandler = new ItemStackHandler(SIZE){
-        protected void onContentChanged(int slot){
+        protected void onContentChanged(int SLOT){
             TileMobGrinder.this.markDirty();
         }
     };
@@ -84,8 +86,8 @@ public class TileMobGrinder extends TileEntity implements ITickable {
                 if (mob instanceof EntityLivingBase) {
                     EntityPlayerMP mobGrinder = FakePlayerFactory.get((WorldServer) world, new GameProfile(UUID.nameUUIDFromBytes(new TextComponentTranslation("fakeplayer.basicautomation.mob.grinder").getFormattedText().getBytes()), new TextComponentTranslation("fakeplayer.basicautomation.mob_grinder").getFormattedText()));
                     mobGrinder.setPosition(this.pos.getX(), -2D, this.pos.getZ());
-                    //ItemStack weapon = new ItemStack(, 1, 0);
-                    //mobGrinder.setHeldItem(EnumHand.MAIN_HAND, weapon);
+                    ItemStack weapon = this.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, facing).getStackInSlot(0);
+                    mobGrinder.setHeldItem(EnumHand.MAIN_HAND, weapon);
                     mobGrinder.attackTargetEntityWithCurrentItem(mob);
                     mobGrinder.resetCooldown();
                 }

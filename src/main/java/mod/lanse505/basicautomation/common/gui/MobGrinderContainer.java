@@ -42,17 +42,11 @@ public class MobGrinderContainer extends Container{
 
     private void addOwnSlots() {
         IItemHandler itemHandler = this.te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
-        int x = 1;
-        int y = 1;
-
-        // Add our own slots
+        int x = 80;
+        int y = 50;
         int slotIndex = 0;
-        for (int i = 0; i < itemHandler.getSlots(); i++) {
-            addSlotToContainer(new SlotItemHandler(itemHandler, slotIndex, x, y));
-            slotIndex++;
-            x += 1;
+        addSlotToContainer(new SlotItemHandler(itemHandler, slotIndex, x, y));
         }
-    }
 
     @Nullable
     @Override
