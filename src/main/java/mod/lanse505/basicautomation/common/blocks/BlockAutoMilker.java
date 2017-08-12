@@ -20,7 +20,7 @@ public class BlockAutoMilker extends Block implements ITileEntityProvider {
 
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 
-    public BlockAutoMilker(){
+    public BlockAutoMilker() {
         super(Material.IRON);
         setUnlocalizedName(BasicAutomation.MODID + ".automilker");
         setRegistryName("automilker");
@@ -28,13 +28,13 @@ public class BlockAutoMilker extends Block implements ITileEntityProvider {
     }
 
     @SideOnly(Side.CLIENT)
-    public void initModel(){
+    public void initModel() {
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), 0, new ModelResourceLocation(getRegistryName(), "inventory"));
     }
 
     @Override
-    public TileEntity createNewTileEntity(World worldIn, int meta){
-        return new TileAutoMilker(){
+    public TileEntity createNewTileEntity(World worldIn, int meta) {
+        return new TileAutoMilker() {
         };
     }
 }

@@ -12,7 +12,7 @@ import net.minecraftforge.items.SlotItemHandler;
 
 import javax.annotation.Nullable;
 
-public class MobGrinderContainer extends Container{
+public class MobGrinderContainer extends Container {
 
     private TileMobGrinder te;
 
@@ -46,7 +46,7 @@ public class MobGrinderContainer extends Container{
         int y = 50;
         int slotIndex = 0;
         addSlotToContainer(new SlotItemHandler(itemHandler, slotIndex, x, y));
-        }
+    }
 
     @Nullable
     @Override

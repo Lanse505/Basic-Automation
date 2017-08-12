@@ -11,9 +11,8 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = BasicAutomation.MODID, name = BasicAutomation.NAME, version = BasicAutomation.VERSION, dependencies = BasicAutomation.DEP,acceptedMinecraftVersions = BasicAutomation.MCVER)
-public class BasicAutomation
-{
+@Mod(modid = BasicAutomation.MODID, name = BasicAutomation.NAME, version = BasicAutomation.VERSION, dependencies = BasicAutomation.DEP, acceptedMinecraftVersions = BasicAutomation.MCVER)
+public class BasicAutomation {
     public static final String MODID = "basicautomation";
     public static final String NAME = "basicautomation";
     public static final String VERSION = "A-1.0.0";
@@ -28,19 +27,19 @@ public class BasicAutomation
     public static Logger logger;
 
     @EventHandler
-    public void preInit(FMLPreInitializationEvent event){
+    public void preInit(FMLPreInitializationEvent event) {
         logger = event.getModLog();
         proxy.preInit(event);
         Config.preInit(event);
     }
 
     @EventHandler
-    public void init(FMLInitializationEvent event){
+    public void init(FMLInitializationEvent event) {
         proxy.init(event);
     }
 
     @EventHandler
-    public void postInit(FMLPostInitializationEvent event){
-    logger.log(Level.INFO, "Hello World");
+    public void postInit(FMLPostInitializationEvent event) {
+        logger.log(Level.INFO, "Hello World");
     }
 }

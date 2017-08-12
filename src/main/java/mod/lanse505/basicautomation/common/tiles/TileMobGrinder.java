@@ -27,16 +27,14 @@ public class TileMobGrinder extends TileEntity implements ITickable {
     public static int config = Config.Configs.Utils.speedMG;
     public static int currentCount = config;
 
-    ItemStack weapon = this.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0);
-    
     public static final int SIZE = 1;
     private static final int SLOT = 0;
 
     @SuppressWarnings("unchecked")
     private List<EntityLivingBase> list;
 
-    private ItemStackHandler itemStackHandler = new ItemStackHandler(SIZE){
-        protected void onContentChanged(int SLOT){
+    private ItemStackHandler itemStackHandler = new ItemStackHandler(SIZE) {
+        protected void onContentChanged(int SLOT) {
             TileMobGrinder.this.markDirty();
         }
     };
@@ -81,6 +79,7 @@ public class TileMobGrinder extends TileEntity implements ITickable {
         if (!world.isRemote) {
             currentCount--;
             if (currentCount == 0) {
+                ItemStack weapon = this.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0);
                 EntityPlayerMP mobGrinder = FakePlayerFactory.get((WorldServer) world, new GameProfile(UUID.nameUUIDFromBytes(new TextComponentTranslation("fakeplayer.basicautomation.mob.grinder").getFormattedText().getBytes()), new TextComponentTranslation("fakeplayer.basicautomation.mob_grinder").getFormattedText()));
                 mobGrinder.setPosition(this.pos.getX(), -2D, this.pos.getZ());
                 mobGrinder.setHeldItem(EnumHand.MAIN_HAND, weapon);
@@ -88,12 +87,12 @@ public class TileMobGrinder extends TileEntity implements ITickable {
                 for (int i = 0; i < list.size(); i++) {
                     Entity mob = list.get(i);
                     if (mob != null && !mob.isDead) {
-                                mobGrinder.attackTargetEntityWithCurrentItem(mob);
-                                mobGrinder.resetCooldown();
-                        }
+                        mobGrinder.attackTargetEntityWithCurrentItem(mob);
+                        mobGrinder.resetCooldown();
                     }
-                currentCount = config;
                 }
+                currentCount = config;
             }
         }
+    }
 }
