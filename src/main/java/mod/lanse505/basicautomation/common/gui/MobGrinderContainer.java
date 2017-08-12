@@ -1,6 +1,6 @@
 package mod.lanse505.basicautomation.common.gui;
 
-import mod.lanse505.basicautomation.common.tiles.TileMobGrinderS;
+import mod.lanse505.basicautomation.common.tiles.TileMobGrinder;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
@@ -14,9 +14,9 @@ import javax.annotation.Nullable;
 
 public class MobGrinderContainer extends Container{
 
-    private TileMobGrinderS te;
+    private TileMobGrinder te;
 
-    public MobGrinderContainer(IInventory playerInventory, TileMobGrinderS te) {
+    public MobGrinderContainer(IInventory playerInventory, TileMobGrinder te) {
         this.te = te;
         addOwnSlots();
         addPlayerSlots(playerInventory);
@@ -58,11 +58,11 @@ public class MobGrinderContainer extends Container{
             ItemStack itemstack1 = slot.getStack();
             itemstack = itemstack1.copy();
 
-            if (index < TileMobGrinderS.SIZE) {
-                if (!this.mergeItemStack(itemstack1, TileMobGrinderS.SIZE, this.inventorySlots.size(), true)) {
+            if (index < TileMobGrinder.SIZE) {
+                if (!this.mergeItemStack(itemstack1, TileMobGrinder.SIZE, this.inventorySlots.size(), true)) {
                     return null;
                 }
-            } else if (!this.mergeItemStack(itemstack1, 0, TileMobGrinderS.SIZE, false)) {
+            } else if (!this.mergeItemStack(itemstack1, 0, TileMobGrinder.SIZE, false)) {
                 return null;
             }
 

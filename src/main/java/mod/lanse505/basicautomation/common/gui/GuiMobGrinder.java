@@ -1,7 +1,7 @@
 package mod.lanse505.basicautomation.common.gui;
 
 import mod.lanse505.basicautomation.BasicAutomation;
-import mod.lanse505.basicautomation.common.tiles.TileMobGrinderS;
+import mod.lanse505.basicautomation.common.tiles.TileMobGrinder;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.util.ResourceLocation;
 
@@ -11,7 +11,7 @@ public class GuiMobGrinder extends GuiContainer {
 
     private static final ResourceLocation background = new ResourceLocation(BasicAutomation.MODID, "textures/gui/mobgrindercontainer.png");
 
-    public GuiMobGrinder(TileMobGrinderS tileMobGrinder, MobGrinderContainer container){
+    public GuiMobGrinder(TileMobGrinder tileMobGrinder, MobGrinderContainer container){
         super(container);
         xSize = WIDTH;
         ySize = HEIGHT;
