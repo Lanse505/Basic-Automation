@@ -76,13 +76,13 @@ public class TileMobGrinder extends TileEntity implements ITickable {
     @SuppressWarnings("unchecked")
     public void update() {
         if (!world.isRemote) {
+            ItemStack weapon = this.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0);
             currentCount--;
             if (currentCount == 0) {
-                ItemStack weapon = this.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0);
                 EntityPlayerMP mobGrinder = FakePlayerFactory.get((WorldServer) world, new GameProfile(UUID.nameUUIDFromBytes(new TextComponentTranslation("fakeplayer.basicautomation.mob.grinder").getFormattedText().getBytes()), new TextComponentTranslation("fakeplayer.basicautomation.mob_grinder").getFormattedText()));
                 mobGrinder.setPosition(this.pos.getX(), -2D, this.pos.getZ());
                 mobGrinder.setHeldItem(EnumHand.MAIN_HAND, weapon);
-                List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos.getX() - Config.Configs.Utils.rangeMG, pos.getY(), pos.getZ() - Config.Configs.Utils.rangeMG, pos.getX() + 1 + Config.Configs.Utils.rangeMG, pos.getY() + 3 + Config.Configs.Utils.rangeMG, pos.getZ() + 1 + Config.Configs.Utils.rangeMG));
+                List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos.getX() - Config.Configs.Utils.rangeMG, pos.getY() + 1, pos.getZ() - Config.Configs.Utils.rangeMG, pos.getX() + 1 + Config.Configs.Utils.rangeMG, pos.getY() + 3 + Config.Configs.Utils.rangeMG, pos.getZ() + 1 + Config.Configs.Utils.rangeMG));
                 for (int i = 0; i < list.size(); i++) {
                     Entity mob = list.get(i);
                     if (mob != null && !mob.isDead) {
