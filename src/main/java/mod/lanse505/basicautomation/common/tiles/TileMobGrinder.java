@@ -23,8 +23,8 @@ import net.minecraftforge.items.ItemStackHandler;
 import java.util.List;
 import java.util.UUID;
 
-public class TileMobGrinderS extends TileEntity implements ITickable {
-    public static int config = Config.Configs.Utils.speedMG;1
+public class TileMobGrinder extends TileEntity implements ITickable {
+    public static int config = Config.Configs.Utils.speedMG;
     public static int currentCount = config;
     public static final int SIZE = 1;
     private static final int SLOT = 0;
@@ -34,7 +34,7 @@ public class TileMobGrinderS extends TileEntity implements ITickable {
 
     private ItemStackHandler itemStackHandler = new ItemStackHandler(SIZE){
         protected void onContentChanged(int SLOT){
-            TileMobGrinderS.this.markDirty();
+            TileMobGrinder.this.markDirty();
         }
     };
 
