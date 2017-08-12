@@ -23,8 +23,8 @@ import net.minecraftforge.items.ItemStackHandler;
 import java.util.List;
 import java.util.UUID;
 
-public class tileMobGrinder extends TileEntity implements ITickable {
-    public static int config = Config.Configs.Utils.speedMG;
+public class TileMobGrinderS extends TileEntity implements ITickable {
+    public static int config = Config.Configs.Utils.speedMG;1
     public static int currentCount = config;
     public static final int SIZE = 1;
     private static final int SLOT = 0;
@@ -34,7 +34,7 @@ public class tileMobGrinder extends TileEntity implements ITickable {
 
     private ItemStackHandler itemStackHandler = new ItemStackHandler(SIZE){
         protected void onContentChanged(int SLOT){
-            tileMobGrinder.this.markDirty();
+            TileMobGrinderS.this.markDirty();
         }
     };
 
@@ -85,15 +85,13 @@ public class tileMobGrinder extends TileEntity implements ITickable {
                 List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos.getX() - Config.Configs.Utils.rangeMG, pos.getY(), pos.getZ() - Config.Configs.Utils.rangeMG, pos.getX() + 1 + Config.Configs.Utils.rangeMG, pos.getY() + 3 + Config.Configs.Utils.rangeMG, pos.getZ() + 1 + Config.Configs.Utils.rangeMG));
                 for (int i = 0; i < list.size(); i++) {
                     Entity mob = list.get(i);
-                    if (mob != null) {
-                        if (!mob.isDead) {
+                    if (mob != null && !mob.isDead) {
                                 mobGrinder.attackTargetEntityWithCurrentItem(mob);
                                 mobGrinder.resetCooldown();
-                            }
                         }
                     }
-                }
                 currentCount = config;
+                }
             }
         }
 }

@@ -1,7 +1,7 @@
 package mod.lanse505.basicautomation.common.blocks;
 
 import mod.lanse505.basicautomation.BasicAutomation;
-import mod.lanse505.basicautomation.common.tiles.tileAutoMilker;
+import mod.lanse505.basicautomation.common.tiles.TileAutoMilkerS;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -16,11 +16,11 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class blockAutoMilker extends Block implements ITileEntityProvider {
+public class BlockAutoMilkerS extends Block implements ITileEntityProvider {
 
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 
-    public blockAutoMilker(){
+    public BlockAutoMilkerS(){
         super(Material.IRON);
         setUnlocalizedName(BasicAutomation.MODID + ".automilker");
         setRegistryName("automilker");
@@ -34,7 +34,7 @@ public class blockAutoMilker extends Block implements ITileEntityProvider {
 
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta){
-        return new tileAutoMilker(){
+        return new TileAutoMilkerS(){
         };
     }
 }

@@ -6,13 +6,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ModBlocks {
     @GameRegistry.ObjectHolder("basicautomation:automilker")
-    public static blockAutoMilker automilker;
+    public static BlockAutoMilkerS automilker;
 
     @GameRegistry.ObjectHolder("basicautomation:autoshear")
-    public static blockAutoShear autoshear;
+    public static BlockAutoShearS autoshear;
 
     @GameRegistry.ObjectHolder("basicautomation:mobgrinder")
-    public static blockMobGrinder mobgrinder;
+    public static BlockMobGrinderS mobgrinder;
 
     @SideOnly(Side.CLIENT)
     public static void initModels() {
