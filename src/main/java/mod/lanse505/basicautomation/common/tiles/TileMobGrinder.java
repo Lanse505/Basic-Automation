@@ -26,6 +26,9 @@ import java.util.UUID;
 public class TileMobGrinder extends TileEntity implements ITickable {
     public static int config = Config.Configs.Utils.speedMG;
     public static int currentCount = config;
+
+    ItemStack weapon = this.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0);
+    
     public static final int SIZE = 1;
     private static final int SLOT = 0;
 
@@ -76,7 +79,6 @@ public class TileMobGrinder extends TileEntity implements ITickable {
     @SuppressWarnings("unchecked")
     public void update() {
         if (!world.isRemote) {
-            ItemStack weapon = this.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0);
             currentCount--;
             if (currentCount == 0) {
                 EntityPlayerMP mobGrinder = FakePlayerFactory.get((WorldServer) world, new GameProfile(UUID.nameUUIDFromBytes(new TextComponentTranslation("fakeplayer.basicautomation.mob.grinder").getFormattedText().getBytes()), new TextComponentTranslation("fakeplayer.basicautomation.mob_grinder").getFormattedText()));
