@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "modtut:blocks/mobgrinder"
+    "all": "basicautomation:blocks/blockmobgrinder"
   }
 }

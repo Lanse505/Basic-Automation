@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "modtut:blocks/automilker"
+    "all": "basicautomation:blocks/blockautomilker"
   }
 }

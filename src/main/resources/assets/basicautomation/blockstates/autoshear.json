@@ -3,12 +3,14 @@
   "defaults": {
     "textures": {
       "all": "basicautomation:blocks/blockautoshear"
-    },
-    "model": "cube_all",
-    "uvlock": true
+    }
   },
   "variants": {
-    "normal": [{}],
-    "inventory": [{}]
+    "normal": {
+      "model": "cube_all"
+    },
+    "inventory": {
+      "model": "cube_all"
+    }
   }
 }
