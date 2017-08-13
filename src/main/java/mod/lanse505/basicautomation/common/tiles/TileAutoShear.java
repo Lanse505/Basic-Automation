@@ -30,11 +30,7 @@ public class TileAutoShear extends TileEntity implements ITickable {
     int config = Config.Configs.Utils.speedAS;
     int currentCount = config;
 
-    private ItemStackHandler itemStackHandler = new ItemStackHandler(SIZE) {
-        protected void onContentChanged(int SLOT) {
-            TileAutoShear.this.markDirty();
-        }
-    };
+    private ItemStackHandler itemStackHandler = new ItemStackHandlerTile(this, SIZE);
 
     @Override
     public void readFromNBT(NBTTagCompound compound) {
@@ -76,10 +72,10 @@ public class TileAutoShear extends TileEntity implements ITickable {
         if (!world.isRemote){
             currentCount--;
             if (currentCount == 0){
+                EntityPlayerMP autoShear = FakePlayerFactory.get((WorldServer) world, new GameProfile(UUID.nameUUIDFromBytes(new TextComponentTranslation("fakeplayer.basicautomation.auto.shear").getFormattedText().getBytes()), new TextComponentTranslation("fakeplayer.basicautomation.auto_shear").getFormattedText()));
                 ItemStack shear = this.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0);
-                EntityPlayerMP mobGrinder = FakePlayerFactory.get((WorldServer) world, new GameProfile(UUID.nameUUIDFromBytes(new TextComponentTranslation("fakeplayer.basicautomation.auto.shear").getFormattedText().getBytes()), new TextComponentTranslation("fakeplayer.basicautomation.auto_shear").getFormattedText()));
-                mobGrinder.setPosition(this.pos.getX(), -2D, this.pos.getZ());
-                mobGrinder.setHeldItem(EnumHand.MAIN_HAND, shear);
+                autoShear.setPosition(this.pos.getX(), -2D, this.pos.getZ());
+                autoShear.setHeldItem(EnumHand.MAIN_HAND, shear);
                 List<EntitySheep> list = world.getEntitiesWithinAABB(EntitySheep.class, new AxisAlignedBB(pos).expand(Config.Configs.Utils.rangeAS, Config.Configs.Utils.rangeAS, Config.Configs.Utils.rangeAS));
                 for (int i = 0; i < list.size(); i++) {
                     Entity shearable = list.get(i);
