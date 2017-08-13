@@ -1,3 +1,6 @@
-tile.basicautomation.mobgrinder=Mob Grinder
-tile.basicautomation.automilker=Auto Milker
-tile.basicautomaiton.autoshear=Auto Shear
+tile.basicautomation.autoshear.name=Auto Shear
+tile.basicautomation.automilker.name=Auto Milker
+tile.basicautomation.mobgrinder.name=Mob Grinder
+
+fakeplayer.basicautomation.mob.grinder=Mob Grinder
+fakeplayer.basicautomation.mob_grinder=Mob Grinder

@@ -25,6 +25,7 @@ public class BlockMobGrinder extends Block implements ITileEntityProvider {
 
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
     public static final int GUI_ID = 1;
+    public static boolean Active = true;
 
     public BlockMobGrinder() {
         super(Material.IRON);

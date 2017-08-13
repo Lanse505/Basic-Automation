@@ -1,16 +1,16 @@
 [
-{
-  "modid": "examplemod",
-  "name": "Example Mod",
-  "description": "Example placeholder mod.",
-  "version": "${version}",
-  "mcversion": "${mcversion}",
-  "url": "",
-  "updateUrl": "",
-  "authorList": ["ExampleDude"],
-  "credits": "The Forge and FML guys, for making this example",
-  "logoFile": "",
-  "screenshots": [],
-  "dependencies": []
-}
+    {
+        "modid": "basicautomation  ",
+        "name": "Basic Automation",
+        "description": "A Vanilla-Style Utilitarian Mod",
+        "version": "${version}",
+        "mcversion": "${mcversion}",
+        "url": "",
+        "updateUrl": "",
+        "authorList": ["Lanse505"],
+        "credits": "Special thanks goes to: Jaredlll08, WarlordJones, Skysom, Darkhax & Dominance",
+        "logoFile": "",
+        "screenshots": [],
+        "dependencies": []
+    }
 ]
