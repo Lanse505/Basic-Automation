@@ -14,6 +14,7 @@ import mod.lanse505.basicautomation.common.utils.Config;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -41,32 +42,35 @@ public class CommonProxy {
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
-        if (Config.Configs.Blocks.autoShear == true) {
-            event.getRegistry().register(new BlockAutoShear());
-            GameRegistry.registerTileEntity(TileAutoShear.class, BasicAutomation.MODID + "_autoshear");
+        if (Config.Configs.Blocks.autoShear) {
+            Block aS = new BlockAutoShear();
+            event.getRegistry().register(aS);
+            GameRegistry.registerTileEntity(TileAutoShear.class, aS.getRegistryName().toString());
         }
 
-        if (Config.Configs.Blocks.autoMilker == true) {
-            event.getRegistry().register(new BlockAutoMilker());
-            GameRegistry.registerTileEntity(TileAutoMilker.class, BasicAutomation.MODID + "_automilker");
+        if (Config.Configs.Blocks.autoMilker) {
+            Block aM = new BlockAutoMilker();
+            event.getRegistry().register(aM);
+            GameRegistry.registerTileEntity(TileAutoMilker.class, aM.getRegistryName().toString());
         }
 
-        if (Config.Configs.Blocks.mobGrinder == true) {
-            event.getRegistry().register(new BlockMobGrinder());
-            GameRegistry.registerTileEntity(TileMobGrinder.class, BasicAutomation.MODID + "_mobgrinder");
+        if (Config.Configs.Blocks.mobGrinder) {
+            Block mG = new BlockMobGrinder();
+            event.getRegistry().register(mG);
+            GameRegistry.registerTileEntity(TileMobGrinder.class, mG.getRegistryName().toString());
         }
     }
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
-        if (Config.Configs.Blocks.autoShear == true) {
+        if (Config.Configs.Blocks.autoShear) {
             event.getRegistry().register(new ItemBlock(ModBlocks.autoshear).setRegistryName(ModBlocks.autoshear.getRegistryName()));
         }
-        if (Config.Configs.Blocks.autoMilker == true) {
+        if (Config.Configs.Blocks.autoMilker) {
             event.getRegistry().register(new ItemBlock(ModBlocks.automilker).setRegistryName(ModBlocks.automilker.getRegistryName()));
         }
 
-        if (Config.Configs.Blocks.mobGrinder == true) {
+        if (Config.Configs.Blocks.mobGrinder) {
             event.getRegistry().register(new ItemBlock(ModBlocks.mobgrinder).setRegistryName(ModBlocks.mobgrinder.getRegistryName()));
         }
     }

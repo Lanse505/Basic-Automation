@@ -2,12 +2,12 @@
   "forge_marker": 1,
   "defaults": {
     "textures": {
-      "up": "XYZ",
-      "north": "XYZ",
-      "west": "XYZ",
-      "south": "XYZ",
-      "east": "XYZ",
-      "down":"XYZ"
+      "up": "basicautomation:blocks/blockautoshear",
+      "north": "basicautomation:blocks/blockautoshear",
+      "west": "basicautomation:blocks/blockautoshear",
+      "south": "basicautomation:blocks/blockautoshear",
+      "east": "basicautomation:blocks/blockautoshear",
+      "down": "basicautomation:blocks/blockautoshear"
     }
   },
   "variants": {

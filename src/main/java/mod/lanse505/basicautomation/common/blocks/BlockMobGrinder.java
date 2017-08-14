@@ -1,6 +1,7 @@
 package mod.lanse505.basicautomation.common.blocks;
 
 import mod.lanse505.basicautomation.BasicAutomation;
+import mod.lanse505.basicautomation.common.tiles.TileAutoShear;
 import mod.lanse505.basicautomation.common.tiles.TileMobGrinder;
 import mod.lanse505.basicautomation.common.utils.CreativeTab;
 import net.minecraft.block.Block;
@@ -21,7 +22,9 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockMobGrinder extends Block implements ITileEntityProvider {
+import javax.annotation.Nonnull;
+
+public class BlockMobGrinder extends Block {
 
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
     public static final int GUI_ID = 1;
@@ -42,7 +45,12 @@ public class BlockMobGrinder extends Block implements ITileEntityProvider {
     }
 
     @Override
-    public TileEntity createNewTileEntity(World worldIn, int meta) {
+    public boolean hasTileEntity(IBlockState blockState) {
+        return true;
+    }
+
+    @Nonnull
+    public  TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState blockState){
         return new TileMobGrinder();
     }
 

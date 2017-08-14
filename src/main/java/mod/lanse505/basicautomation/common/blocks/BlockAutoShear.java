@@ -21,7 +21,9 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockAutoShear extends Block implements ITileEntityProvider {
+import javax.annotation.Nonnull;
+
+public class BlockAutoShear extends Block {
 
     public static final int GUI_ID = 2;
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
@@ -41,9 +43,13 @@ public class BlockAutoShear extends Block implements ITileEntityProvider {
     }
 
     @Override
-    public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return new TileAutoShear() {
-        };
+    public boolean hasTileEntity(IBlockState blockState) {
+        return true;
+    }
+
+    @Nonnull
+    public  TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState blockState){
+        return new TileAutoShear();
     }
 
     @Override
