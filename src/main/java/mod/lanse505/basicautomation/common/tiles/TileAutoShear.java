@@ -1,29 +1,25 @@
 package mod.lanse505.basicautomation.common.tiles;
 
-import com.mojang.authlib.GameProfile;
 import mod.lanse505.basicautomation.common.utils.Config;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.text.TextComponentTranslation;
-import net.minecraft.world.WorldServer;
+import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.common.IShearable;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.util.FakePlayerFactory;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-import javax.annotation.Nonnull;
 import java.util.List;
-import java.util.UUID;
+import java.util.Random;
 
 public class TileAutoShear extends TileEntity implements ITickable {
 
@@ -70,37 +66,43 @@ public class TileAutoShear extends TileEntity implements ITickable {
 
     @Override
     public void update() {
-        if (!world.isRemote){
+        if (!world.isRemote) {
             currentCount--;
-            if (currentCount == 0){
-                //Create and Get The Fake Player
-                EntityPlayerMP autoShear = FakePlayerFactory.get((WorldServer) world, new GameProfile(UUID.nameUUIDFromBytes(new TextComponentTranslation("fakeplayer.basicautomation.auto.shear").getFormattedText().getBytes()), new TextComponentTranslation("fakeplayer.basicautomation.auto_shear").getFormattedText()));
+            if (currentCount == 0) {
+                BlockPos pos = new BlockPos(this.pos);
 
                 //Get The Item
                 ItemStack item = this.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0);
 
-                //Set the Pos and HeldItem of the Fake Player
-                autoShear.setPosition(this.pos.getX(), -2D, this.pos.getZ());
-                autoShear.setHeldItem(EnumHand.MAIN_HAND, item);
-
-                //Get The Sheep
-                List<EntitySheep> list = world.getEntitiesWithinAABB(EntitySheep.class, new AxisAlignedBB(pos).expand(Config.Configs.Utils.rangeAS, Config.Configs.Utils.rangeAS, Config.Configs.Utils.rangeAS));
+                //Get The Entity
+                List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos).expand(Config.Configs.Utils.rangeAS, Config.Configs.Utils.rangeAS, Config.Configs.Utils.rangeAS));
 
                 //Iterate through the list
                 for (int i = 0; i < list.size(); i++) {
-                    Entity shearable = list.get(i);
+                        EntityLivingBase entity = list.get(i);
+                        if (entity instanceof IShearable){
+                            IShearable shearable = (IShearable)entity;
 
-                    //Check if Sheep are still there and alive
-                    if (shearable != null && !shearable.isDead) {
+                            //Check if the Item is an instanceof ItemShear
+                            if (shearable.isShearable(item, world, pos)) {
+                                Random rand = new java.util.Random();
+                                BlockPos posE = new BlockPos(entity.posX, entity.posY, entity.posZ);
+                                int Fortune = EnchantmentHelper.getEnchantmentLevel(net.minecraft.init.Enchantments.FORTUNE, item);
 
-                        //Check if the Item is an instanceof ItemShear
-                        if (item.getItem() instanceof ItemShears) {
-                            shearable.processInitialInteract(autoShear, EnumHand.MAIN_HAND);
-                        }
+                                List<ItemStack> drops = shearable.onSheared(item, world, posE, Fortune);
+
+                                for(ItemStack stack : drops) {
+                                    EntityItem ent = entity.entityDropItem(stack, 1.0F);
+                                    ent.motionY += rand.nextFloat() * 0.05F;
+                                    ent.motionX += (rand.nextFloat() - rand.nextFloat()) * 0.1F;
+                                    ent.motionZ += (rand.nextFloat() - rand.nextFloat()) * 0.1F;
+                                }
+                                item.damageItem(1, entity);
+                            }
                     }
+                    //Resets the Timer
+                    currentCount = config;
                 }
-                //Resets the Timer
-                currentCount = config;
             }
         }
     }

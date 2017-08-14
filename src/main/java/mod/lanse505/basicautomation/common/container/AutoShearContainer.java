@@ -1,7 +1,6 @@
 package mod.lanse505.basicautomation.common.container;
 
 import mod.lanse505.basicautomation.common.tiles.TileAutoShear;
-import mod.lanse505.basicautomation.common.tiles.TileMobGrinder;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;

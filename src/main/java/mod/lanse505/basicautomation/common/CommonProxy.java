@@ -1,12 +1,12 @@
 package mod.lanse505.basicautomation.common;
 
 import mod.lanse505.basicautomation.BasicAutomation;
-import mod.lanse505.basicautomation.common.guiproxy.GuiProxyAutoShear;
-import mod.lanse505.basicautomation.common.guiproxy.GuiProxyMobGrinder;
 import mod.lanse505.basicautomation.common.blocks.BlockAutoMilker;
 import mod.lanse505.basicautomation.common.blocks.BlockAutoShear;
 import mod.lanse505.basicautomation.common.blocks.BlockMobGrinder;
 import mod.lanse505.basicautomation.common.blocks.ModBlocks;
+import mod.lanse505.basicautomation.common.guiproxy.GuiProxyAutoShear;
+import mod.lanse505.basicautomation.common.guiproxy.GuiProxyMobGrinder;
 import mod.lanse505.basicautomation.common.tiles.TileAutoMilker;
 import mod.lanse505.basicautomation.common.tiles.TileAutoShear;
 import mod.lanse505.basicautomation.common.tiles.TileMobGrinder;

@@ -2,9 +2,7 @@ package mod.lanse505.basicautomation.client.gui;
 
 import mod.lanse505.basicautomation.BasicAutomation;
 import mod.lanse505.basicautomation.common.container.AutoShearContainer;
-import mod.lanse505.basicautomation.common.container.MobGrinderContainer;
 import mod.lanse505.basicautomation.common.tiles.TileAutoShear;
-import mod.lanse505.basicautomation.common.tiles.TileMobGrinder;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.util.ResourceLocation;
 
