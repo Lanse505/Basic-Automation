@@ -3,19 +3,11 @@ package mod.lanse505.basicautomation.common.utils;
 import mod.lanse505.basicautomation.BasicAutomation;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-@net.minecraftforge.common.config.Config(modid = BasicAutomation.MODID)
 public class Config {
-
+    @net.minecraftforge.common.config.Config(modid = BasicAutomation.MODID)
     public static class Configs {
-
-        public static General general;
         public static Blocks blocks;
         public static Utils utils;
-
-        public static class General {
-            @net.minecraftforge.common.config.Config.Comment("General Configs")
-            public static boolean allBlocks = true;
-        }
 
         public static class Blocks {
             @net.minecraftforge.common.config.Config.Comment("Enable the Mob Grinder?")

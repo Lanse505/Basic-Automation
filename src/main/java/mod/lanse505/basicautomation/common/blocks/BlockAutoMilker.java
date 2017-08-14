@@ -2,8 +2,10 @@ package mod.lanse505.basicautomation.common.blocks;
 
 import mod.lanse505.basicautomation.BasicAutomation;
 import mod.lanse505.basicautomation.common.tiles.TileAutoMilker;
+import mod.lanse505.basicautomation.common.utils.CreativeTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -24,7 +26,9 @@ public class BlockAutoMilker extends Block implements ITileEntityProvider {
         super(Material.IRON);
         setUnlocalizedName(BasicAutomation.MODID + ".automilker");
         setRegistryName("automilker");
-        setCreativeTab(CreativeTabs.FOOD);
+        setCreativeTab(CreativeTab.basicAutomation);
+        setHardness(7.5f);
+        setSoundType(SoundType.METAL);
     }
 
     @SideOnly(Side.CLIENT)

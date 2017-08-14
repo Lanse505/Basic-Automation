@@ -1,4 +1,4 @@
-package mod.lanse505.basicautomation.common.gui;
+package mod.lanse505.basicautomation.common.container;
 
 import mod.lanse505.basicautomation.common.tiles.TileMobGrinder;
 import net.minecraft.entity.player.EntityPlayer;

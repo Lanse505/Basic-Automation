@@ -2,7 +2,12 @@
   "forge_marker": 1,
   "defaults": {
     "textures": {
-      "all": "basicautomation:blocks/blockmobgrinder"
+      "up": "XYZ",
+      "north": "XYZ",
+      "west": "XYZ",
+      "south": "XYZ",
+      "east": "XYZ",
+      "down":"XYZ"
     }
   },
   "variants": {

@@ -6,3 +6,5 @@ fakeplayer.basicautomation.mob.grinder=Mob Grinder
 fakeplayer.basicautomation.mob_grinder=Mob Grinder
 fakeplayer.basicautomation.auto.shear=Auto Shear
 fakeplayer.basicautomation.auto_shear=Auto Shear
+
+itemGroup.basicautomation=Basic Auto

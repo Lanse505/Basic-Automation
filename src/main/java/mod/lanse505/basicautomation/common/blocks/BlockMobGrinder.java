@@ -2,6 +2,7 @@ package mod.lanse505.basicautomation.common.blocks;
 
 import mod.lanse505.basicautomation.BasicAutomation;
 import mod.lanse505.basicautomation.common.tiles.TileMobGrinder;
+import mod.lanse505.basicautomation.common.utils.CreativeTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
@@ -31,7 +32,7 @@ public class BlockMobGrinder extends Block implements ITileEntityProvider {
         super(Material.IRON);
         setUnlocalizedName(BasicAutomation.MODID + ".mobgrinder");
         setRegistryName("mobgrinder");
-        setCreativeTab(CreativeTabs.FOOD);
+        setCreativeTab(CreativeTab.basicAutomation);
         setHardness(7.5f);
         setSoundType(SoundType.METAL);
     }

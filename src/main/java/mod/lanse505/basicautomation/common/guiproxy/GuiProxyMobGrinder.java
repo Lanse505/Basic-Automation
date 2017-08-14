@@ -1,7 +1,7 @@
-package mod.lanse505.basicautomation.common;
+package mod.lanse505.basicautomation.common.guiproxy;
 
 import mod.lanse505.basicautomation.client.gui.GuiMobGrinder;
-import mod.lanse505.basicautomation.common.gui.MobGrinderContainer;
+import mod.lanse505.basicautomation.common.container.MobGrinderContainer;
 import mod.lanse505.basicautomation.common.tiles.TileMobGrinder;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -9,7 +9,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 
-public class GuiProxy implements IGuiHandler {
+public class GuiProxyMobGrinder implements IGuiHandler {
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
         BlockPos pos = new BlockPos(x, y, z);
