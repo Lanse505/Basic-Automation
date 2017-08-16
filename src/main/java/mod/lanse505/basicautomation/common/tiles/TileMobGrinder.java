@@ -31,10 +31,9 @@ import java.util.List;
 import java.util.UUID;
 
 public class TileMobGrinder extends TileEntity implements ITickable {
+    public static final int SIZE = 1;
     public static int config = Config.Configs.Utils.speedMG;
     public static int currentCount = config;
-    public static final int SIZE = 1;
-
     private ItemStackHandler itemStackHandler = new ItemStackHandlerTile(this, SIZE);
 
     @Override
@@ -53,7 +52,7 @@ public class TileMobGrinder extends TileEntity implements ITickable {
     }
 
     public boolean canInteractWith(EntityPlayer playerIn) {
-        return !isInvalid() && playerIn.getDistanceSq(pos.add(0.5D, 0.5D, 0.5D)) <= 64D;
+        return !isInvalid() && playerIn.getDistanceSqToCenter(pos.add(0.5D, 0.5D, 0.5D)) <= 64D;
     }
 
     @Override
@@ -122,9 +121,10 @@ class ItemStackHandlerTile extends ItemStackHandler {
     public ItemStackHandlerTile(TileEntity tile, int size) {
         super(size);
         this.tile = tile;
-        }
+    }
+
     @Override
     protected void onContentsChanged(int SLOT) {
         tile.markDirty();
-        }
- }
+    }
+}

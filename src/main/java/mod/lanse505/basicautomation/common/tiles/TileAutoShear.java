@@ -2,7 +2,6 @@ package mod.lanse505.basicautomation.common.tiles;
 
 import mod.lanse505.basicautomation.common.utils.Config;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -45,7 +44,7 @@ public class TileAutoShear extends TileEntity implements ITickable {
     }
 
     public boolean canInteractWith(EntityPlayer playerIn) {
-        return !isInvalid() && playerIn.getDistanceSq(pos.add(0.5D, 0.5D, 0.5D)) <= 64D;
+        return !isInvalid() && playerIn.getDistanceSqToCenter(pos.add(0.5D, 0.5D, 0.5D)) <= 64D;
     }
 
     @Override
@@ -79,26 +78,26 @@ public class TileAutoShear extends TileEntity implements ITickable {
 
                 //Iterate through the list
                 for (int i = 0; i < list.size(); i++) {
-                        EntityLivingBase entity = list.get(i);
-                        if (entity instanceof IShearable){
-                            IShearable shearable = (IShearable)entity;
+                    EntityLivingBase entity = list.get(i);
+                    if (entity instanceof IShearable) {
+                        IShearable shearable = (IShearable) entity;
 
-                            //Check if the Item is an instanceof ItemShear
-                            if (shearable.isShearable(item, world, pos)) {
-                                Random rand = new java.util.Random();
-                                BlockPos posE = new BlockPos(entity.posX, entity.posY, entity.posZ);
-                                int Fortune = EnchantmentHelper.getEnchantmentLevel(net.minecraft.init.Enchantments.FORTUNE, item);
+                        //Check if the Item is an instanceof ItemShear
+                        if (shearable.isShearable(item, world, pos)) {
+                            Random rand = new java.util.Random();
+                            BlockPos posE = new BlockPos(entity.posX, entity.posY, entity.posZ);
+                            int Fortune = EnchantmentHelper.getEnchantmentLevel(net.minecraft.init.Enchantments.FORTUNE, item);
 
-                                List<ItemStack> drops = shearable.onSheared(item, world, posE, Fortune);
+                            List<ItemStack> drops = shearable.onSheared(item, world, posE, Fortune);
 
-                                for(ItemStack stack : drops) {
-                                    EntityItem ent = entity.entityDropItem(stack, 1.0F);
-                                    ent.motionY += rand.nextFloat() * 0.05F;
-                                    ent.motionX += (rand.nextFloat() - rand.nextFloat()) * 0.1F;
-                                    ent.motionZ += (rand.nextFloat() - rand.nextFloat()) * 0.1F;
-                                }
-                                item.damageItem(1, entity);
+                            for (ItemStack stack : drops) {
+                                EntityItem ent = entity.entityDropItem(stack, 1.0F);
+                                ent.motionY += rand.nextFloat() * 0.05F;
+                                ent.motionX += (rand.nextFloat() - rand.nextFloat()) * 0.1F;
+                                ent.motionZ += (rand.nextFloat() - rand.nextFloat()) * 0.1F;
                             }
+                            item.damageItem(1, entity);
+                        }
                     }
                     //Resets the Timer
                     currentCount = config;

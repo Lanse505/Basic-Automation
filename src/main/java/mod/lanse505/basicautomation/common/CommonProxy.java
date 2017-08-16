@@ -1,12 +1,10 @@
 package mod.lanse505.basicautomation.common;
 
-import mod.lanse505.basicautomation.BasicAutomation;
+import mod.lanse505.basicautomation.client.GuiProxy;
 import mod.lanse505.basicautomation.common.blocks.BlockAutoMilker;
 import mod.lanse505.basicautomation.common.blocks.BlockAutoShear;
 import mod.lanse505.basicautomation.common.blocks.BlockMobGrinder;
 import mod.lanse505.basicautomation.common.blocks.ModBlocks;
-import mod.lanse505.basicautomation.common.guiproxy.GuiProxyAutoShear;
-import mod.lanse505.basicautomation.common.guiproxy.GuiProxyMobGrinder;
 import mod.lanse505.basicautomation.common.tiles.TileAutoMilker;
 import mod.lanse505.basicautomation.common.tiles.TileAutoShear;
 import mod.lanse505.basicautomation.common.tiles.TileMobGrinder;
@@ -14,7 +12,6 @@ import mod.lanse505.basicautomation.common.utils.Config;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -28,17 +25,6 @@ import static mod.lanse505.basicautomation.BasicAutomation.instance;
 
 @Mod.EventBusSubscriber
 public class CommonProxy {
-
-    public void preInit(FMLPreInitializationEvent e) {
-    }
-
-    public void init(FMLInitializationEvent e) {
-        NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiProxyMobGrinder());
-        NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiProxyAutoShear());
-    }
-
-    public void postInit(FMLPostInitializationEvent e) {
-    }
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
@@ -73,5 +59,15 @@ public class CommonProxy {
         if (Config.Configs.Blocks.mobGrinder) {
             event.getRegistry().register(new ItemBlock(ModBlocks.mobgrinder).setRegistryName(ModBlocks.mobgrinder.getRegistryName()));
         }
+    }
+
+    public void preInit(FMLPreInitializationEvent e) {
+    }
+
+    public void init(FMLInitializationEvent e) {
+        NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiProxy());
+    }
+
+    public void postInit(FMLPostInitializationEvent e) {
     }
 }

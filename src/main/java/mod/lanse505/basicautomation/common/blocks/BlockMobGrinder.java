@@ -1,11 +1,9 @@
 package mod.lanse505.basicautomation.common.blocks;
 
 import mod.lanse505.basicautomation.BasicAutomation;
-import mod.lanse505.basicautomation.common.tiles.TileAutoShear;
 import mod.lanse505.basicautomation.common.tiles.TileMobGrinder;
 import mod.lanse505.basicautomation.common.utils.CreativeTab;
 import net.minecraft.block.Block;
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
@@ -50,7 +48,7 @@ public class BlockMobGrinder extends Block {
     }
 
     @Nonnull
-    public  TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState blockState){
+    public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState blockState) {
         return new TileMobGrinder();
     }
 

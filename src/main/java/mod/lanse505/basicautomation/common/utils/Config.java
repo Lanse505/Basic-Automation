@@ -4,6 +4,9 @@ import mod.lanse505.basicautomation.BasicAutomation;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 public class Config {
+    public static void preInit(FMLPreInitializationEvent event) {
+    }
+
     @net.minecraftforge.common.config.Config(modid = BasicAutomation.MODID)
     public static class Configs {
         public static Blocks blocks;
@@ -37,8 +40,5 @@ public class Config {
             @net.minecraftforge.common.config.Config.RangeInt(min = 1, max = Integer.MAX_VALUE)
             public static int speedAS = 20;
         }
-    }
-
-    public static void preInit(FMLPreInitializationEvent event) {
     }
 }

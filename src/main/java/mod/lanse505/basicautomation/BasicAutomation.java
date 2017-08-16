@@ -1,17 +1,13 @@
 package mod.lanse505.basicautomation;
 
 import mod.lanse505.basicautomation.common.CommonProxy;
-import mod.lanse505.basicautomation.common.blocks.BlockMobGrinder;
-import mod.lanse505.basicautomation.common.tiles.TileMobGrinder;
 import mod.lanse505.basicautomation.common.utils.Config;
-import net.minecraft.block.Block;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.Logger;
 
@@ -35,8 +31,7 @@ public class BasicAutomation {
         logger = event.getModLog();
         proxy.preInit(event);
         Config.preInit(event);
-
-        }
+    }
 
     @EventHandler
     public void init(FMLInitializationEvent event) {

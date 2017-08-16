@@ -9,7 +9,7 @@ public class CreativeTab extends CreativeTabs {
 
     public static final CreativeTab basicAutomation = new CreativeTab();
 
-    public CreativeTab(){
+    public CreativeTab() {
         super(BasicAutomation.MODID);
     }
 
@@ -25,6 +25,6 @@ public class CreativeTab extends CreativeTabs {
 
     @Override
     public CreativeTabs setBackgroundImageName(String texture) {
-       return super.setBackgroundImageName("tab_item_search.png");
+        return super.setBackgroundImageName("tab_item_search.png");
     }
 }
