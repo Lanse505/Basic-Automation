@@ -2,6 +2,7 @@ package mod.lanse505.basicautomation.common.tiles;
 
 import com.mojang.authlib.GameProfile;
 import mod.lanse505.basicautomation.common.utils.Config;
+import mod.lanse505.basicautomation.common.utils.ItemStackHandlerTile;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -115,16 +116,3 @@ public class TileMobGrinder extends TileEntity implements ITickable {
     }
 }
 
-class ItemStackHandlerTile extends ItemStackHandler {
-    TileEntity tile;
-
-    public ItemStackHandlerTile(TileEntity tile, int size) {
-        super(size);
-        this.tile = tile;
-    }
-
-    @Override
-    protected void onContentsChanged(int SLOT) {
-        tile.markDirty();
-    }
-}

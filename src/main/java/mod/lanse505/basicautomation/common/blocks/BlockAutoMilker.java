@@ -1,6 +1,7 @@
 package mod.lanse505.basicautomation.common.blocks;
 
 import mod.lanse505.basicautomation.BasicAutomation;
+import mod.lanse505.basicautomation.common.tiles.TileAutoMilker;
 import mod.lanse505.basicautomation.common.tiles.TileAutoShear;
 import mod.lanse505.basicautomation.common.utils.CreativeTab;
 import net.minecraft.block.Block;
@@ -50,7 +51,7 @@ public class BlockAutoMilker extends Block implements ITileEntityProvider {
 
     @Nonnull
     public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState blockState) {
-        return new TileAutoShear();
+        return new TileAutoMilker();
     }
 
     @Override
@@ -60,7 +61,7 @@ public class BlockAutoMilker extends Block implements ITileEntityProvider {
         }
 
         TileEntity te = world.getTileEntity(pos);
-        if (!(te instanceof TileAutoShear)) {
+        if (!(te instanceof TileAutoMilker)) {
             return false;
         }
         player.openGui(BasicAutomation.instance, GUI_ID, world, pos.getX(), pos.getY(), pos.getZ());

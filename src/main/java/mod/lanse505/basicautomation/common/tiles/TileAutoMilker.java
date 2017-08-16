@@ -2,6 +2,7 @@ package mod.lanse505.basicautomation.common.tiles;
 
 import com.mojang.authlib.GameProfile;
 import mod.lanse505.basicautomation.common.utils.Config;
+import mod.lanse505.basicautomation.common.utils.ItemStackHandlerTile;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntityPig;
