@@ -1,7 +1,9 @@
 package mod.lanse505.basicautomation.client;
 
+import mod.lanse505.basicautomation.client.gui.GuiAutoMilker;
 import mod.lanse505.basicautomation.client.gui.GuiAutoShear;
 import mod.lanse505.basicautomation.client.gui.GuiMobGrinder;
+import mod.lanse505.basicautomation.common.container.AutoMilkerContainer;
 import mod.lanse505.basicautomation.common.container.AutoShearContainer;
 import mod.lanse505.basicautomation.common.container.MobGrinderContainer;
 import mod.lanse505.basicautomation.common.tiles.TileAutoMilker;
@@ -27,6 +29,7 @@ public class GuiProxy implements IGuiHandler {
         }
 
         if (te instanceof TileAutoMilker) {
+            return new AutoMilkerContainer(player.inventory, (TileAutoMilker) te);
         }
 
         return null;
@@ -48,6 +51,8 @@ public class GuiProxy implements IGuiHandler {
         }
 
         if (te instanceof TileAutoMilker) {
+            TileAutoMilker AutoMilkerContainer = (TileAutoMilker) te;
+            return new GuiAutoMilker(AutoMilkerContainer, new AutoMilkerContainer(player.inventory, AutoMilkerContainer));
         }
 
         return null;

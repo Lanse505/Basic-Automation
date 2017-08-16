@@ -2,20 +2,20 @@
   "forge_marker": 1,
   "defaults": {
     "textures": {
-      "up": "basicautomation:blocks/blockautoshear",
-      "north": "basicautomation:blocks/blockautoshear",
-      "west": "basicautomation:blocks/blockautoshear",
-      "south": "basicautomation:blocks/blockautoshear",
-      "east": "basicautomation:blocks/blockautoshear",
-      "down": "basicautomation:blocks/blockautoshear"
+      "up": "basicautomation:blocks/blockmobgrindertop",
+      "north": "basicautomation:blocks/blockbasicside",
+      "west": "basicautomation:blocks/blockbasicside",
+      "south": "basicautomation:blocks/blockbasicside",
+      "east": "basicautomation:blocks/blockbasicside",
+      "down": "basicautomation:blocks/blockbasicbottom"
     }
   },
   "variants": {
     "normal": {
-      "model": "cube_all"
+      "model": "cube"
     },
     "inventory": {
-      "model": "cube_all"
+      "model": "cube"
     }
   }
 }

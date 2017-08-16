@@ -11,6 +11,7 @@ public class CreativeTab extends CreativeTabs {
 
     public CreativeTab() {
         super(BasicAutomation.MODID);
+        setBackgroundImageName("item_search.png");
     }
 
     @Override
@@ -21,10 +22,5 @@ public class CreativeTab extends CreativeTabs {
     @Override
     public boolean hasSearchBar() {
         return true;
-    }
-
-    @Override
-    public CreativeTabs setBackgroundImageName(String texture) {
-        return super.setBackgroundImageName("tab_item_search.png");
     }
 }
