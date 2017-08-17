@@ -1,6 +1,7 @@
 package mod.lanse505.basicautomation.common.tiles;
 
 import com.mojang.authlib.GameProfile;
+import com.sun.istack.internal.NotNull;
 import mod.lanse505.basicautomation.common.utils.Config;
 import mod.lanse505.basicautomation.common.utils.ItemStackHandlerTile;
 import net.minecraft.entity.EntityLivingBase;
@@ -8,7 +9,13 @@ import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.InventoryBasic;
+import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBucket;
+import net.minecraft.item.ItemBucketMilk;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -73,11 +80,8 @@ public class TileAutoMilker extends TileEntity implements ITickable {
         if (!world.isRemote) {
             currentCount--;
             if (currentCount == 0) {
-                //Creates the FP, Sets the item in it's hand to
-                EntityPlayerMP autoMilker = FakePlayerFactory.get((WorldServer) world, new GameProfile(UUID.nameUUIDFromBytes(new TextComponentTranslation("fakeplayer.basicautomation.mob.grinder").getFormattedText().getBytes()), new TextComponentTranslation("fakeplayer.basicautomation.mob_grinder").getFormattedText()));
-                ItemStack item = this.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0);
-                autoMilker.setPosition(this.pos.getX(), -2D, this.pos.getZ());
-                autoMilker.setHeldItem(EnumHand.MAIN_HAND, item);
+                ItemStack slot0 = this.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0);
+                ItemStack slot1 = this.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(1);
 
                 //Get The Entity
                 List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos).expand(Config.Configs.Utils.rangeAS, Config.Configs.Utils.rangeAS, Config.Configs.Utils.rangeAS));
@@ -85,11 +89,18 @@ public class TileAutoMilker extends TileEntity implements ITickable {
                 //Iterate through the list
                 for (int i = 0; i < list.size(); i++) {
                     EntityLivingBase entity = list.get(i);
-                    if (entity instanceof EntityCow || entity instanceof EntityPig) {
+                    if (entity instanceof EntityCow) {
                         EntityCow milkable = (EntityCow) entity;
                         if (!milkable.isDead && milkable != null) {
-                            if (item.getItem() instanceof ItemBucket) {
-                                milkable.processInteract(autoMilker, EnumHand.MAIN_HAND);
+                            if (slot0.getItem() instanceof ItemBucket) {
+
+                                ItemStack milk;
+                                int count0 = slot0.getCount();
+                                int count1 = slot1.getCount();
+
+                                count0--;
+
+
                             }
                         }
                     }

@@ -25,7 +25,7 @@ public class AutoMilkerContainer extends Container {
         // Slots for the main inventory
         for (int row = 0; row < 3; ++row) {
             for (int col = 0; col < 9; ++col) {
-                int x = 9 + col * 18;
+                int x = 11 + col * 18;
                 int y = row * 18 + 70;
                 this.addSlotToContainer(new Slot(playerInventory, col + row * 9 + 10, x, y));
             }
@@ -33,7 +33,7 @@ public class AutoMilkerContainer extends Container {
 
         // Slots for the hotbar
         for (int row = 0; row < 9; ++row) {
-            int x = 9 + row * 18;
+            int x = 11 + row * 18;
             int y = 58 + 70;
             this.addSlotToContainer(new Slot(playerInventory, row, x, y));
         }
@@ -41,10 +41,10 @@ public class AutoMilkerContainer extends Container {
 
     private void addOwnSlots() {
         IItemHandler itemHandler = this.te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
-        int a = 80;
-        int b = 50;
-        int c = 50;
-        int d = 80;
+        int a = 46;
+        int b = 25;
+        int c = 118;
+        int d = 26;
 
         int slot1 = 0;
         int slot2 = 1;
