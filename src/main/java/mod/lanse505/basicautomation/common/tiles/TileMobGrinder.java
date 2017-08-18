@@ -33,8 +33,8 @@ import java.util.UUID;
 
 public class TileMobGrinder extends TileEntity implements ITickable {
     public static final int SIZE = 1;
-    public static int config = Config.Configs.Utils.speedMG;
-    public static int currentCount = config;
+    private static int config = Config.Configs.Utils.speedMG;
+    private static int currentCount = config;
     private ItemStackHandler itemStackHandler = new ItemStackHandlerTile(this, SIZE);
 
     @Override
@@ -82,8 +82,8 @@ public class TileMobGrinder extends TileEntity implements ITickable {
                 mobGrinder.setPosition(this.pos.getX(), -2D, this.pos.getZ());
                 mobGrinder.setHeldItem(EnumHand.MAIN_HAND, weapon);
                 List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos).expand(Config.Configs.Utils.rangeMG, Config.Configs.Utils.rangeMG, Config.Configs.Utils.rangeMG));
-                for (int i = 0; i < list.size(); i++) {
-                    Entity mob = list.get(i);
+                for (EntityLivingBase aList : list) {
+                    Entity mob = aList;
                     if (mob != null && !mob.isDead) {
                         causePlayerDamage(mobGrinder, mob);
                     }

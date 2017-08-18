@@ -2,7 +2,6 @@ package mod.lanse505.basicautomation.common.blocks;
 
 import mod.lanse505.basicautomation.BasicAutomation;
 import mod.lanse505.basicautomation.common.tiles.TileAutoMilker;
-import mod.lanse505.basicautomation.common.tiles.TileAutoShear;
 import mod.lanse505.basicautomation.common.utils.CreativeTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;

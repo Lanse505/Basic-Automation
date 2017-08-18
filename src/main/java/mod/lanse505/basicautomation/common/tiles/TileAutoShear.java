@@ -6,6 +6,7 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Enchantments;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -24,8 +25,8 @@ import java.util.Random;
 public class TileAutoShear extends TileEntity implements ITickable {
 
     public static int SIZE = 1;
-    int config = Config.Configs.Utils.speedAS;
-    int currentCount = config;
+    private int config = Config.Configs.Utils.speedAS;
+    private int currentCount = config;
 
     private ItemStackHandler itemStackHandler = new ItemStackHandlerTile(this, SIZE);
 
@@ -50,10 +51,7 @@ public class TileAutoShear extends TileEntity implements ITickable {
 
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-            return true;
-        }
-        return super.hasCapability(capability, facing);
+        return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
     }
 
     @Override
@@ -78,16 +76,15 @@ public class TileAutoShear extends TileEntity implements ITickable {
                 List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos).expand(Config.Configs.Utils.rangeAS, Config.Configs.Utils.rangeAS, Config.Configs.Utils.rangeAS));
 
                 //Iterate through the list
-                for (int i = 0; i < list.size(); i++) {
-                    EntityLivingBase entity = list.get(i);
+                for (EntityLivingBase entity : list) {
                     if (entity instanceof IShearable) {
                         IShearable shearable = (IShearable) entity;
 
                         //Check if the Item is an instanceof ItemShear
                         if (shearable.isShearable(item, world, pos)) {
-                            Random rand = new java.util.Random();
+                            Random rand = new Random();
                             BlockPos posE = new BlockPos(entity.posX, entity.posY, entity.posZ);
-                            int Fortune = EnchantmentHelper.getEnchantmentLevel(net.minecraft.init.Enchantments.FORTUNE, item);
+                            int Fortune = EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, item);
 
                             List<ItemStack> drops = shearable.onSheared(item, world, posE, Fortune);
 

@@ -4,7 +4,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.items.ItemStackHandler;
 
 public class ItemStackHandlerTile extends ItemStackHandler {
-    TileEntity tile;
+    private TileEntity tile;
 
     public ItemStackHandlerTile(TileEntity tile, int size) {
         super(size);

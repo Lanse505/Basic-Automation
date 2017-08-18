@@ -46,11 +46,11 @@ public class AutoMilkerContainer extends Container {
         int c = 118;
         int d = 26;
 
-        int slot1 = 0;
-        int slot2 = 1;
+        int slot0 = 0;
+        int slot1 = 1;
 
-        addSlotToContainer(new SlotItemHandler(itemHandler, slot1, a, b));
-        addSlotToContainer(new SlotItemHandler(itemHandler, slot2, c, d));
+        addSlotToContainer(new SlotItemHandler(itemHandler, slot0, a, b));
+        addSlotToContainer(new SlotItemHandler(itemHandler, slot1, c, d));
     }
 
     @Nullable
