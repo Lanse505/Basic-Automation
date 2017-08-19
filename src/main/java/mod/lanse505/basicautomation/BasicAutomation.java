@@ -40,6 +40,5 @@ public class BasicAutomation {
 
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-        logger.log(Level.INFO, "Hello World");
     }
 }

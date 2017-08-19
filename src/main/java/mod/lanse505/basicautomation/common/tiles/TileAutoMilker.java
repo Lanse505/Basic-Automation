@@ -6,6 +6,7 @@ import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemBucket;
+import net.minecraft.item.ItemBucketMilk;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -66,27 +67,37 @@ public class TileAutoMilker extends TileEntity implements ITickable {
         if (!world.isRemote) {
             currentCount--;
             if (currentCount == 0) {
-                ItemStack slot0 = this.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0);
-                ItemStack slot1 = this.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(1);
-                int count0 = slot0.getCount();
+                ItemStack slot0 = this.itemStackHandler.getStackInSlot(0);
+                ItemStack slot1 = this.itemStackHandler.getStackInSlot(1);
+                System.out.println("Gotten Slots 0-1");
+                System.out.println(slot0 + " : " + slot1);
 
                 //Get The Entity
-                List<EntityCow> list = world.getEntitiesWithinAABB(EntityCow.class, new AxisAlignedBB(pos).expand(Config.Configs.Utils.rangeAS, Config.Configs.Utils.rangeAS, Config.Configs.Utils.rangeAS));
+                List<EntityCow> list = world.getEntitiesWithinAABB(EntityCow.class, new AxisAlignedBB(pos).grow(Config.Configs.Utils.rangeAS, Config.Configs.Utils.rangeAS, Config.Configs.Utils.rangeAS));
+                System.out.println("Gathered Entities");
 
                 //Iterate through the list
                 for (EntityCow entity : list) {
+                    System.out.println("Gotten EntityCow from List");
                     if (!entity.isDead) {
+                        System.out.println("Checked if Entity was Dead");
                         if (slot0.getItem() instanceof ItemBucket) {
-                            if (slot1.getCount() == 0) {
+                            System.out.println("Checked if Item in Slot 0 was instanceof Bucket");
+                            if (slot1.isEmpty()) {
+                                System.out.println("Checked if Slot 1 is Empty");
                                 slot0.setCount(slot0.getCount() - 1);
-                                this.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).insertItem(1, new ItemStack(Items.MILK_BUCKET), false);
+                                System.out.println("Slot0 - 1");
+                                this.itemStackHandler.insertItem(1, new ItemStack(Items.MILK_BUCKET), true);
+                                System.out.println("Inserted Item");
                             }
                         }
                     }
                 }
+                //Resets the Timer
+                currentCount = config;
+                System.out.println("Reset Timer");
             }
-            //Resets the Timer
-            currentCount = config;
         }
+        this.markDirty();
     }
 }
