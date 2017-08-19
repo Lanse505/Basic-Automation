@@ -69,33 +69,23 @@ public class TileAutoMilker extends TileEntity implements ITickable {
             if (currentCount == 0) {
                 ItemStack slot0 = this.itemStackHandler.getStackInSlot(0);
                 ItemStack slot1 = this.itemStackHandler.getStackInSlot(1);
-                System.out.println("Gotten Slots 0-1");
-                System.out.println(slot0 + " : " + slot1);
 
                 //Get The Entity
                 List<EntityCow> list = world.getEntitiesWithinAABB(EntityCow.class, new AxisAlignedBB(pos).grow(Config.Configs.Utils.rangeAS, Config.Configs.Utils.rangeAS, Config.Configs.Utils.rangeAS));
-                System.out.println("Gathered Entities");
 
                 //Iterate through the list
                 for (EntityCow entity : list) {
-                    System.out.println("Gotten EntityCow from List");
                     if (!entity.isDead) {
-                        System.out.println("Checked if Entity was Dead");
                         if (slot0.getItem() instanceof ItemBucket) {
-                            System.out.println("Checked if Item in Slot 0 was instanceof Bucket");
                             if (slot1.isEmpty()) {
-                                System.out.println("Checked if Slot 1 is Empty");
-                                slot0.setCount(slot0.getCount() - 1);
-                                System.out.println("Slot0 - 1");
-                                this.itemStackHandler.insertItem(1, new ItemStack(Items.MILK_BUCKET), true);
-                                System.out.println("Inserted Item");
+                                slot0.shrink(1);
+                                this.itemStackHandler.setStackInSlot(1, new ItemStack(Items.MILK_BUCKET));
                             }
                         }
                     }
                 }
                 //Resets the Timer
                 currentCount = config;
-                System.out.println("Reset Timer");
             }
         }
         this.markDirty();
