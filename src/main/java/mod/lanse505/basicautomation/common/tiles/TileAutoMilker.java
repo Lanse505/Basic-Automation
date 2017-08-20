@@ -47,7 +47,7 @@ public class TileAutoMilker extends TileEntity implements ITickable{
 
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-            if (facing != EnumFacing.DOWN && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+            if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
                 return true;
         }
         return super.hasCapability(capability, facing);
@@ -55,7 +55,7 @@ public class TileAutoMilker extends TileEntity implements ITickable{
 
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-        if (facing == EnumFacing.DOWN && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ) {
+        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ) {
                 return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(itemStackHandler);
         }
         return super.getCapability(capability, facing);
