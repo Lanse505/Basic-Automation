@@ -3,9 +3,10 @@ package mod.lanse505.basicautomation.common.blocks;
 import mod.lanse505.basicautomation.BasicAutomation;
 import mod.lanse505.basicautomation.common.tiles.TileAutoMilker;
 import mod.lanse505.basicautomation.common.utils.CreativeTab;
-import mod.lanse505.basicautomation.common.utils.ISidedBlock;
+import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -25,12 +26,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class BlockAutoMilker extends ISidedBlock implements ITileEntityProvider {
+public class BlockAutoMilker extends Block implements ITileEntityProvider {
 
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
     public static final int GUI_ID = 3;
 
     public BlockAutoMilker() {
+        super(Material.ROCK);
         setUnlocalizedName(BasicAutomation.MODID + ".automilker");
         setRegistryName("automilker");
         setCreativeTab(CreativeTab.basicAutomation);
@@ -51,30 +53,6 @@ public class BlockAutoMilker extends ISidedBlock implements ITileEntityProvider 
     @Nonnull
     public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState blockState) {
         return new TileAutoMilker();
-    }
-
-    @Override
-    public int[] getSlotsForFace(EnumFacing side) {
-        if (side == EnumFacing.DOWN) {
-            return new int[1];
-        }
-        return new int[0];
-    }
-
-    @Override
-    public boolean canInsertItem(int index, ItemStack itemStackIn, EnumFacing direction) {
-        if (direction != EnumFacing.DOWN && itemStackIn.getItem() == Items.BUCKET && index == 0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction) {
-        if (direction == EnumFacing.DOWN && stack.getItem() == Items.MILK_BUCKET && index == 1) {
-            return true;
-        }
-        return false;
     }
 
     @Override
