@@ -18,7 +18,7 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import java.util.List;
 
-public class TileAutoMilker extends TileEntity implements ITickable{
+public class TileAutoMilker extends TileEntity implements ITickable {
     public static int SIZE = 2;
     private int config = Config.Configs.Utils.speedAM;
     private int currentCount = config;
@@ -45,17 +45,17 @@ public class TileAutoMilker extends TileEntity implements ITickable{
 
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-            if (facing != EnumFacing.DOWN && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-                return true;
-            }
+        if (facing != EnumFacing.DOWN && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+            return true;
+        }
         return super.hasCapability(capability, facing);
     }
 
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-            if (facing != EnumFacing.DOWN && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ) {
-                return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(itemStackHandler);
-            }
+        if (facing != EnumFacing.DOWN && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+            return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(itemStackHandler);
+        }
         return super.getCapability(capability, facing);
     }
 

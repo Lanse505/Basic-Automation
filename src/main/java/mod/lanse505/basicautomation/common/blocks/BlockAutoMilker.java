@@ -4,16 +4,13 @@ import mod.lanse505.basicautomation.BasicAutomation;
 import mod.lanse505.basicautomation.common.tiles.TileAutoMilker;
 import mod.lanse505.basicautomation.common.utils.CreativeTab;
 import net.minecraft.block.Block;
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -24,9 +21,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
-public class BlockAutoMilker extends Block implements ITileEntityProvider {
+public class BlockAutoMilker extends Block {
 
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
     public static final int GUI_ID = 3;
@@ -67,11 +63,5 @@ public class BlockAutoMilker extends Block implements ITileEntityProvider {
         }
         player.openGui(BasicAutomation.instance, GUI_ID, world, pos.getX(), pos.getY(), pos.getZ());
         return true;
-    }
-
-    @Nullable
-    @Override
-    public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return null;
     }
 }
