@@ -6,7 +6,6 @@ import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemBucket;
-import net.minecraft.item.ItemBucketMilk;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -19,11 +18,12 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import java.util.List;
 
-public class TileAutoMilker extends TileEntity implements ITickable {
+public class TileAutoMilker extends TileEntity implements ITickable{
     public static int SIZE = 2;
     private int config = Config.Configs.Utils.speedAM;
     private int currentCount = config;
     private ItemStackHandler itemStackHandler = new ItemStackHandlerTile(this, SIZE);
+
 
 
     @Override
@@ -47,18 +47,16 @@ public class TileAutoMilker extends TileEntity implements ITickable {
 
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-        if (facing != EnumFacing.DOWN && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-            return true;
+            if (facing != EnumFacing.DOWN && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+                return true;
         }
         return super.hasCapability(capability, facing);
     }
 
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-        if (facing == EnumFacing.DOWN && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-            if (itemStackHandler.getStackInSlot(1).getItem() instanceof ItemBucketMilk) {
+        if (facing == EnumFacing.DOWN && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ) {
                 return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(itemStackHandler);
-            }
         }
         return super.getCapability(capability, facing);
     }
