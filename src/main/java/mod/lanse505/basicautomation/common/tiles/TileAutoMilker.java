@@ -24,8 +24,6 @@ public class TileAutoMilker extends TileEntity implements ITickable{
     private int currentCount = config;
     private ItemStackHandler itemStackHandler = new ItemStackHandlerTile(this, SIZE);
 
-
-
     @Override
     public void readFromNBT(NBTTagCompound compound) {
         super.readFromNBT(compound);
@@ -47,17 +45,17 @@ public class TileAutoMilker extends TileEntity implements ITickable{
 
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-            if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+            if (facing != EnumFacing.DOWN && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
                 return true;
-        }
+            }
         return super.hasCapability(capability, facing);
     }
 
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ) {
+            if (facing != EnumFacing.DOWN && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ) {
                 return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(itemStackHandler);
-        }
+            }
         return super.getCapability(capability, facing);
     }
 
@@ -69,7 +67,6 @@ public class TileAutoMilker extends TileEntity implements ITickable{
                 ItemStack slot0 = this.itemStackHandler.getStackInSlot(0);
                 ItemStack slot1 = this.itemStackHandler.getStackInSlot(1);
                 List<EntityCow> list = world.getEntitiesWithinAABB(EntityCow.class, new AxisAlignedBB(pos).grow(Config.Configs.Utils.rangeAM, Config.Configs.Utils.rangeAM + 1, Config.Configs.Utils.rangeAM));
-
                 for (EntityCow entity : list) {
                     if (!entity.isDead) {
                         if (slot0.getItem() instanceof ItemBucket) {
