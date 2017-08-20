@@ -39,6 +39,14 @@ public class Config {
             @net.minecraftforge.common.config.Config.Comment("Determines how often the Auto-Shear will /Shear/ Sheep: " + "[Set in Ticks: 20 Ticks = 1 Second]")
             @net.minecraftforge.common.config.Config.RangeInt(min = 1, max = Integer.MAX_VALUE)
             public static int speedAS = 20;
+
+            @net.minecraftforge.common.config.Config.Comment("Determines the range of the Auto-Shear: " + "[1 = 3x3, 2 = 5x5, 3 = 7x7, 4 = 9x9]")
+            @net.minecraftforge.common.config.Config.RangeInt(min = 1, max = 4)
+            public static int rangeAM = 1;
+
+            @net.minecraftforge.common.config.Config.Comment("Determines how often the Auto-Shear will /Shear/ Sheep: " + "[Set in Ticks: 20 Ticks = 1 Second]")
+            @net.minecraftforge.common.config.Config.RangeInt(min = 1, max = Integer.MAX_VALUE)
+            public static int speedAM = 20;
         }
     }
 }

@@ -68,33 +68,24 @@ public class TileAutoShear extends TileEntity implements ITickable {
             currentCount--;
             if (currentCount == 0) {
                 BlockPos pos = new BlockPos(this.pos);
+                ItemStack itemStack = itemStackHandler.getStackInSlot(0);
+                List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos).grow(Config.Configs.Utils.rangeAS, Config.Configs.Utils.rangeAS + 1, Config.Configs.Utils.rangeAS));
 
-                //Get The Item
-                ItemStack item = this.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0);
-
-                //Get The Entity
-                List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos).expand(Config.Configs.Utils.rangeAS, Config.Configs.Utils.rangeAS, Config.Configs.Utils.rangeAS));
-
-                //Iterate through the list
                 for (EntityLivingBase entity : list) {
                     if (entity instanceof IShearable) {
                         IShearable shearable = (IShearable) entity;
-
-                        //Check if the Item is an instanceof ItemShear
-                        if (shearable.isShearable(item, world, pos)) {
+                        if (shearable.isShearable(itemStack, world, pos)) {
                             Random rand = new Random();
                             BlockPos posE = new BlockPos(entity.posX, entity.posY, entity.posZ);
-                            int Fortune = EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, item);
-
-                            List<ItemStack> drops = shearable.onSheared(item, world, posE, Fortune);
-
+                            int Fortune = EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, itemStack);
+                            List<ItemStack> drops = shearable.onSheared(itemStack, world, posE, Fortune);
                             for (ItemStack stack : drops) {
                                 EntityItem ent = entity.entityDropItem(stack, 1.0F);
                                 ent.motionY += rand.nextFloat() * 0.05F;
                                 ent.motionX += (rand.nextFloat() - rand.nextFloat()) * 0.1F;
                                 ent.motionZ += (rand.nextFloat() - rand.nextFloat()) * 0.1F;
                             }
-                            item.damageItem(1, entity);
+                            itemStack.damageItem(1, entity);
                         }
                     }
                     //Resets the Timer
@@ -102,5 +93,6 @@ public class TileAutoShear extends TileEntity implements ITickable {
                 }
             }
         }
+        this.markDirty();
     }
 }

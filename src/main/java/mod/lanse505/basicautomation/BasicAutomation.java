@@ -8,16 +8,14 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = BasicAutomation.MODID, name = BasicAutomation.NAME, version = BasicAutomation.VERSION, dependencies = BasicAutomation.DEP, acceptedMinecraftVersions = BasicAutomation.MCVER)
+@Mod(modid = BasicAutomation.MODID, name = BasicAutomation.NAME, version = BasicAutomation.VERSION, acceptedMinecraftVersions = BasicAutomation.MCVER)
 public class BasicAutomation {
     public static final String MODID = "basicautomation";
     public static final String NAME = "basicautomation";
     public static final String VERSION = "1.12-0.0.0.0-Alpha";
-    public static final String MCVER = "1.12.0";
-    public static final String DEP = "";
+    public static final String MCVER = "1.12.0, 1.12.1";
 
     @SidedProxy(clientSide = "mod.lanse505.basicautomation.client.ClientProxy", serverSide = "mod.lanse505.basicautomation.server.ServerProxy")
     public static CommonProxy proxy;
