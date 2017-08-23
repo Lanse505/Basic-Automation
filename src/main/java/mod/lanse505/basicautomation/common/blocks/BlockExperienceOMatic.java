@@ -1,7 +1,7 @@
 package mod.lanse505.basicautomation.common.blocks;
 
 import mod.lanse505.basicautomation.BasicAutomation;
-import mod.lanse505.basicautomation.common.tiles.TileMobGrinder;
+import mod.lanse505.basicautomation.common.tiles.TileAutoMilker;
 import mod.lanse505.basicautomation.common.utils.CreativeTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -10,27 +10,34 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGlassBottle;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 
-public class BlockMobGrinder extends Block {
-
+public class BlockExperienceOMatic extends Block {
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
-    public static final int GUI_ID = 1;
 
-    public BlockMobGrinder() {
-        super(Material.IRON);
-        setUnlocalizedName(BasicAutomation.MODID + ".mobgrinder");
-        setRegistryName("mobgrinder");
+
+
+    public BlockExperienceOMatic() {
+        super(Material.ROCK);
+        setUnlocalizedName(BasicAutomation.MODID + ".automilker");
+        setRegistryName("automilker");
         setCreativeTab(CreativeTab.basicAutomation);
         setHardness(7.5f);
         setSoundType(SoundType.METAL);
@@ -48,7 +55,7 @@ public class BlockMobGrinder extends Block {
 
     @Nonnull
     public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState blockState) {
-        return new TileMobGrinder();
+        return new TileAutoMilker();
     }
 
     @Override
@@ -57,13 +64,21 @@ public class BlockMobGrinder extends Block {
             return true;
         }
 
-        TileEntity te = world.getTileEntity(pos);
-        if (!(te instanceof TileMobGrinder)) {
-            return false;
+        if (player.isSneaking()){
+            ITextComponent component = new TextComponentString("Test");
+            player.sendMessage(component);
+            return true;
         }
-        player.openGui(BasicAutomation.instance, GUI_ID, world, pos.getX(), pos.getY(), pos.getZ());
+
+        if (!player.isSneaking()){
+            if (player.getActiveItemStack().getItem() == Items.GLASS_BOTTLE){
+                return true;
+            } else
+                if (player.getActiveItemStack() == ItemStack.EMPTY){
+
+                }
+            return true;
+        }
         return true;
     }
-
 }
-

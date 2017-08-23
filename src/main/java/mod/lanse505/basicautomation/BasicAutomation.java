@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = BasicAutomation.MODID, name = BasicAutomation.NAME, version = BasicAutomation.VERSION, acceptedMinecraftVersions = BasicAutomation.MCVER)
+@Mod(modid = BasicAutomation.MODID, name = BasicAutomation.NAME, version = BasicAutomation.VERSION, acceptedMinecraftVersions = BasicAutomation.MCVER, useMetadata = true)
 public class BasicAutomation {
     public static final String MODID = "basicautomation";
     public static final String NAME = "basicautomation";

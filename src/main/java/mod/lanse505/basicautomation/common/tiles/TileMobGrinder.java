@@ -76,7 +76,7 @@ public class TileMobGrinder extends TileEntity implements ITickable {
     public void update() {
         if (!world.isRemote) {
             currentCount--;
-            if (currentCount == 0) {
+            if (currentCount <= 0) {
                 EntityPlayerMP mobGrinder = FakePlayerFactory.get((WorldServer) world, new GameProfile(UUID.nameUUIDFromBytes(new TextComponentTranslation("fakeplayer.basicautomation.mob.grinder").getFormattedText().getBytes()), new TextComponentTranslation("fakeplayer.basicautomation.mob_grinder").getFormattedText()));
                 ItemStack weapon = itemStackHandler.getStackInSlot(0);
                 mobGrinder.setPosition(this.pos.getX(), -2D, this.pos.getZ());

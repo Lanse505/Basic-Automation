@@ -63,7 +63,7 @@ public class TileAutoMilker extends TileEntity implements ITickable {
     public void update() {
         if (!world.isRemote) {
             currentCount--;
-            if (currentCount == 0) {
+            if (currentCount <= 0) {
                 ItemStack slot0 = this.itemStackHandler.getStackInSlot(0);
                 ItemStack slot1 = this.itemStackHandler.getStackInSlot(1);
                 List<EntityCow> list = world.getEntitiesWithinAABB(EntityCow.class, new AxisAlignedBB(pos).grow(Config.Configs.Utils.rangeAM, Config.Configs.Utils.rangeAM + 1, Config.Configs.Utils.rangeAM));
